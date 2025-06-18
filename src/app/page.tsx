@@ -20,18 +20,20 @@ import {
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   NAVIGATION_ITEMS,
   HERO_DATA,
@@ -75,7 +77,7 @@ const Home = () => {
   };
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const handleContactSubmit = () => {
@@ -145,7 +147,7 @@ const Home = () => {
                   onClick={toggleTheme}
                   className="rounded-lg"
                 >
-                  {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                 </Button>
               </div>
 
@@ -157,7 +159,7 @@ const Home = () => {
                   onClick={toggleTheme}
                   className="rounded-lg"
                 >
-                  {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
                 </Button>
                 <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
                   <SheetTrigger asChild>
@@ -193,6 +195,13 @@ const Home = () => {
           <div className="text-center z-10 max-w-4xl mx-auto px-6">
             <div className="mb-8">
               <Avatar className="w-32 h-32 mx-auto mb-6">
+                <Image
+                  src="/images/avatar.jpg"
+                  alt={HERO_DATA.profileImage.alt}
+                  fill
+                  className="object-cover rounded-full"
+                  sizes="128px"
+                />
                 <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
                   {HERO_DATA.profileImage.fallback}
                 </AvatarFallback>
@@ -219,14 +228,16 @@ const Home = () => {
               >
                 View My Work
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="px-8 py-4 font-semibold transition-all duration-300"
-              >
-                <Download size={20} className="mr-2" />
-                Download CV
-              </Button>
+              <a href="https://docs.google.com/document/d/1DY4M7QMeQDsnQl8ZMImyvFhG0HTunIMEYQMES8rxu0Y/edit?tab=t.0#heading=h.pw280b4y3aov">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 font-semibold transition-all duration-300 hover:cursor-pointer"
+                >
+                  <Download size={20} className="mr-2" />
+                  Download CV
+                </Button>
+              </a>
             </div>
 
             <div className="flex justify-center space-x-4">
@@ -238,9 +249,7 @@ const Home = () => {
                   asChild
                   className="rounded-full hover:scale-110 transition-all duration-300"
                 >
-                  <a href={link.url}>
-                    {getIcon(link.icon)}
-                  </a>
+                  <a href={link.url}>{getIcon(link.icon)}</a>
                 </Button>
               ))}
             </div>
@@ -262,21 +271,28 @@ const Home = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 {ABOUT_DATA.sections.map((section, index) => (
-                  <Card key={index} className="hover:border-primary/50 transition-all duration-300">
+                  <Card
+                    key={index}
+                    className="hover:border-primary/50 transition-all duration-300"
+                  >
                     <CardHeader>
                       <div className="flex items-center space-x-4">
                         <div className="p-2 bg-primary/10 rounded-full">
-                          {section.icon === 'briefcase' ? (
+                          {section.icon === "briefcase" ? (
                             <Briefcase className="text-primary" size={24} />
                           ) : (
                             <Code className="text-primary" size={24} />
                           )}
                         </div>
-                        <CardTitle className="text-xl">{section.title}</CardTitle>
+                        <CardTitle className="text-xl">
+                          {section.title}
+                        </CardTitle>
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground">{section.description}</p>
+                      <p className="text-muted-foreground">
+                        {section.description}
+                      </p>
                     </CardContent>
                   </Card>
                 ))}
@@ -356,13 +372,19 @@ const Home = () => {
 
                     <div className="flex gap-4">
                       <Button asChild size="sm">
-                        <a href={project.demo} className="flex items-center gap-2">
+                        <a
+                          href={project.demo}
+                          className="flex items-center gap-2"
+                        >
                           <ExternalLink size={16} />
                           Live Demo
                         </a>
                       </Button>
                       <Button variant="outline" asChild size="sm">
-                        <a href={project.code} className="flex items-center gap-2">
+                        <a
+                          href={project.code}
+                          className="flex items-center gap-2"
+                        >
                           <Github size={16} />
                           Code
                         </a>
@@ -397,7 +419,9 @@ const Home = () => {
                     <h3 className="font-semibold text-lg text-foreground">
                       Email
                     </h3>
-                    <p className="text-muted-foreground">{CONTACT_DATA.email}</p>
+                    <p className="text-muted-foreground">
+                      {CONTACT_DATA.email}
+                    </p>
                   </div>
                 </div>
 
@@ -428,9 +452,7 @@ const Home = () => {
                         asChild
                         className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                       >
-                        <a href={link.url}>
-                          {getIcon(link.icon)}
-                        </a>
+                        <a href={link.url}>{getIcon(link.icon)}</a>
                       </Button>
                     ))}
                   </div>
@@ -469,9 +491,7 @@ const Home = () => {
         {/* Footer */}
         <footer className="py-8 px-6 border-t border-border">
           <div className="max-w-7xl mx-auto text-center">
-            <p className="text-muted-foreground">
-              {FOOTER_DATA.copyright}
-            </p>
+            <p className="text-muted-foreground">{FOOTER_DATA.copyright}</p>
           </div>
         </footer>
       </div>
