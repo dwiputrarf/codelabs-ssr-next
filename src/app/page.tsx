@@ -14,9 +14,37 @@ import {
   Briefcase,
   Code,
   MessageCircle,
+  Sun,
+  Moon,
 } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  NAVIGATION_ITEMS,
+  HERO_DATA,
+  PROJECTS,
+  SKILLS,
+  ABOUT_DATA,
+  CONTACT_DATA,
+  FOOTER_DATA,
+  ANIMATIONS,
+  type NavigationItem,
+  type Project,
+  type Skill,
+} from "@/lib/constants/home";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,7 +59,7 @@ const Home = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > ANIMATIONS.scrollOffset);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -50,64 +78,26 @@ const Home = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  const projects = [
-    {
-      title: "E-Commerce Platform",
-      description:
-        "Modern React-based shopping platform with advanced filtering and payment integration.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
-      tech: ["React", "Node.js", "MongoDB", "Stripe"],
-      demo: "#",
-      code: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "Collaborative project management tool with real-time updates and team features.",
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop",
-      tech: ["Vue.js", "Express", "Socket.io", "PostgreSQL"],
-      demo: "#",
-      code: "#",
-    },
-    {
-      title: "AI Chat Interface",
-      description:
-        "Intelligent chatbot interface with natural language processing capabilities.",
-      image:
-        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop",
-      tech: ["React", "Python", "OpenAI API", "FastAPI"],
-      demo: "#",
-      code: "#",
-    },
-    {
-      title: "Weather Dashboard",
-      description:
-        "Beautiful weather application with detailed forecasts and interactive maps.",
-      image:
-        "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=500&h=300&fit=crop",
-      tech: ["JavaScript", "Weather API", "Chart.js", "CSS3"],
-      demo: "#",
-      code: "#",
-    },
-  ];
+  const handleContactSubmit = () => {
+    alert("Message sent! (This is a demo)");
+  };
 
-  const skills = [
-    { name: "JavaScript", level: 95 },
-    { name: "React", level: 90 },
-    { name: "Node.js", level: 85 },
-    { name: "Python", level: 80 },
-    { name: "TypeScript", level: 88 },
-    { name: "MongoDB", level: 82 },
-    { name: "PostgreSQL", level: 78 },
-    { name: "AWS", level: 75 },
-  ];
+  const getIcon = (iconName: string) => {
+    const icons = {
+      briefcase: Briefcase,
+      code: Code,
+      github: Github,
+      linkedin: Linkedin,
+      mail: Mail,
+    };
+    const IconComponent = icons[iconName as keyof typeof icons];
+    return IconComponent ? <IconComponent size={24} /> : null;
+  };
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
     return (
-      <div className="min-h-screen font-['Poppins'] bg-white">
+      <div className="min-h-screen font-poppins bg-white">
         <div className="min-h-screen flex items-center justify-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
         </div>
@@ -116,7 +106,7 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen font-['Poppins'] transition-colors duration-300">
+    <div className="min-h-screen font-poppins transition-colors duration-300">
       <div className="min-h-screen bg-background text-foreground">
         {/* Navigation */}
         <nav
@@ -128,62 +118,70 @@ const Home = () => {
         >
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex justify-between items-center">
-              <div className="text-2xl font-bold text-primary">Portfolio</div>
+              <div className="flex flex-row">
+                <div className="text-2xl font-bold text-white">Port</div>
+                <div className="text-2xl font-bold text-primary">folio</div>
+              </div>
 
               {/* Desktop Menu */}
               <div className="hidden md:flex items-center space-x-8">
-                {["home", "about", "portfolio", "contact"].map((item) => (
-                  <button
+                {NAVIGATION_ITEMS.map((item) => (
+                  <Button
                     key={item}
+                    variant="ghost"
                     onClick={() => scrollToSection(item)}
-                    className={`capitalize transition-all duration-300 hover:text-primary ${
+                    className={`capitalize transition-all duration-300 ${
                       activeSection === item
                         ? "text-primary font-medium"
-                        : "text-muted-foreground"
+                        : "text-muted-foreground hover:text-primary"
                     }`}
                   >
                     {item}
-                  </button>
+                  </Button>
                 ))}
-                <button
+                <Button
+                  variant="outline"
+                  size="icon"
                   onClick={toggleTheme}
-                  className="p-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
+                  className="rounded-lg"
                 >
-                  {theme === 'dark' ? "☀️" : "🌙"}
-                </button>
+                  {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                </Button>
               </div>
 
-              {/* Mobile Menu Button */}
+              {/* Mobile Menu */}
               <div className="md:hidden flex items-center space-x-2">
-                <button
+                <Button
+                  variant="outline"
+                  size="icon"
                   onClick={toggleTheme}
-                  className="p-2 rounded-lg bg-secondary hover:bg-accent transition-colors"
+                  className="rounded-lg"
                 >
-                  {theme === 'dark' ? "☀️" : "🌙"}
-                </button>
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="p-2 rounded-lg hover:bg-secondary transition-colors"
-                >
-                  {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+                  {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+                </Button>
+                <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" size="icon">
+                      <Menu size={20} />
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent>
+                    <div className="flex flex-col space-y-4 mt-8">
+                      {NAVIGATION_ITEMS.map((item) => (
+                        <Button
+                          key={item}
+                          variant="ghost"
+                          onClick={() => scrollToSection(item)}
+                          className="justify-start capitalize text-lg"
+                        >
+                          {item}
+                        </Button>
+                      ))}
+                    </div>
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
-
-            {/* Mobile Menu */}
-            {isMenuOpen && (
-              <div className="md:hidden mt-4 py-4 border-t border-border bg-card rounded-lg">
-                {["home", "about", "portfolio", "contact"].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item)}
-                    className="block w-full text-left py-3 px-4 capitalize hover:text-primary hover:bg-secondary transition-colors rounded-lg"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
         </nav>
 
@@ -194,59 +192,57 @@ const Home = () => {
         >
           <div className="text-center z-10 max-w-4xl mx-auto px-6">
             <div className="mb-8">
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-primary p-1">
-                <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
-                  <User size={48} className="text-primary" />
-                </div>
-              </div>
+              <Avatar className="w-32 h-32 mx-auto mb-6">
+                <AvatarFallback className="text-2xl bg-primary text-primary-foreground">
+                  {HERO_DATA.profileImage.fallback}
+                </AvatarFallback>
+              </Avatar>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-              John Doe
+              {HERO_DATA.name}
             </h1>
 
             <p className="text-xl md:text-2xl text-primary mb-8 font-light">
-              Full Stack Developer & UI/UX Designer
+              {HERO_DATA.title}
             </p>
 
             <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-              Crafting beautiful, functional web experiences with modern
-              technologies. Passionate about clean code, innovative design, and
-              solving complex problems.
+              {HERO_DATA.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <button
+              <Button
                 onClick={() => scrollToSection("portfolio")}
-                className="px-8 py-4 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                size="lg"
+                className="px-8 py-4 font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 View My Work
-              </button>
-              <button className="px-8 py-4 border border-primary text-primary rounded-lg font-semibold hover:bg-primary/10 transition-all duration-300 flex items-center gap-2">
-                <Download size={20} />
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="px-8 py-4 font-semibold transition-all duration-300"
+              >
+                <Download size={20} className="mr-2" />
                 Download CV
-              </button>
+              </Button>
             </div>
 
-            <div className="flex justify-center space-x-6">
-              <a
-                href="#"
-                className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-              >
-                <Github size={24} />
-              </a>
-              <a
-                href="#"
-                className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-              >
-                <Linkedin size={24} />
-              </a>
-              <a
-                href="#"
-                className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
-              >
-                <Mail size={24} />
-              </a>
+            <div className="flex justify-center space-x-4">
+              {CONTACT_DATA.socialLinks.map((link, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  size="icon"
+                  asChild
+                  className="rounded-full hover:scale-110 transition-all duration-300"
+                >
+                  <a href={link.url}>
+                    {getIcon(link.icon)}
+                  </a>
+                </Button>
+              ))}
             </div>
           </div>
         </section>
@@ -256,47 +252,41 @@ const Home = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-                About Me
+                {ABOUT_DATA.title}
               </h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                I&apos;m a passionate developer with 5+ years of experience
-                creating digital experiences that combine beautiful design with
-                powerful functionality.
+                {ABOUT_DATA.subtitle}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
-                <div className="p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 shadow-sm">
-                  <Briefcase className="text-primary mb-4" size={32} />
-                  <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                    Professional Experience
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Led development teams in creating scalable web applications
-                    for fortune 500 companies, managing full project lifecycles
-                    from conception to deployment.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-card rounded-xl border border-border hover:border-primary/50 transition-all duration-300 shadow-sm">
-                  <Code className="text-primary mb-4" size={32} />
-                  <h3 className="text-xl font-semibold mb-3 text-card-foreground">
-                    Technical Expertise
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Specialized in modern JavaScript frameworks, cloud
-                    architecture, and database design. Always learning and
-                    adapting to new technologies.
-                  </p>
-                </div>
+                {ABOUT_DATA.sections.map((section, index) => (
+                  <Card key={index} className="hover:border-primary/50 transition-all duration-300">
+                    <CardHeader>
+                      <div className="flex items-center space-x-4">
+                        <div className="p-2 bg-primary/10 rounded-full">
+                          {section.icon === 'briefcase' ? (
+                            <Briefcase className="text-primary" size={24} />
+                          ) : (
+                            <Code className="text-primary" size={24} />
+                          )}
+                        </div>
+                        <CardTitle className="text-xl">{section.title}</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground">{section.description}</p>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
 
               <div className="space-y-6">
                 <h3 className="text-2xl font-semibold mb-6 text-foreground">
                   Skills & Technologies
                 </h3>
-                {skills.map((skill, index) => (
+                {SKILLS.map((skill: Skill, index) => (
                   <div key={skill.name} className="space-y-2">
                     <div className="flex justify-between">
                       <span className="font-medium text-foreground">
@@ -304,12 +294,7 @@ const Home = () => {
                       </span>
                       <span className="text-primary">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                      <div
-                        className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                    <Progress value={skill.level} className="h-2" />
                   </div>
                 ))}
               </div>
@@ -331,10 +316,10 @@ const Home = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-              {projects.map((project, index) => (
-                <div
+              {PROJECTS.map((project: Project, index) => (
+                <Card
                   key={index}
-                  className="group bg-card rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
+                  className="group overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-xl"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -347,43 +332,44 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
 
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-3 text-card-foreground group-hover:text-primary transition-colors">
+                  <CardHeader>
+                    <CardTitle className="group-hover:text-primary transition-colors">
                       {project.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    </CardTitle>
+                    <CardDescription className="leading-relaxed">
                       {project.description}
-                    </p>
+                    </CardDescription>
+                  </CardHeader>
 
+                  <CardContent>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tech.map((tech, techIndex) => (
-                        <span
+                        <Badge
                           key={techIndex}
-                          className="px-3 py-1 bg-primary/10 rounded-full text-sm text-primary border border-primary/20"
+                          variant="secondary"
+                          className="bg-primary/10 text-primary border-primary/20"
                         >
                           {tech}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
 
                     <div className="flex gap-4">
-                      <a
-                        href={project.demo}
-                        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-300 text-sm font-medium"
-                      >
-                        <ExternalLink size={16} />
-                        Live Demo
-                      </a>
-                      <a
-                        href={project.code}
-                        className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg hover:bg-secondary transition-all duration-300 text-sm font-medium"
-                      >
-                        <Github size={16} />
-                        Code
-                      </a>
+                      <Button asChild size="sm">
+                        <a href={project.demo} className="flex items-center gap-2">
+                          <ExternalLink size={16} />
+                          Live Demo
+                        </a>
+                      </Button>
+                      <Button variant="outline" asChild size="sm">
+                        <a href={project.code} className="flex items-center gap-2">
+                          <Github size={16} />
+                          Code
+                        </a>
+                      </Button>
                     </div>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
@@ -394,11 +380,10 @@ const Home = () => {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-                Let&apos;s Work Together
+                {CONTACT_DATA.title}
               </h2>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Have a project in mind? I&apos;d love to hear about it.
-                Let&apos;s create something amazing together.
+                {CONTACT_DATA.subtitle}
               </p>
             </div>
 
@@ -412,7 +397,7 @@ const Home = () => {
                     <h3 className="font-semibold text-lg text-foreground">
                       Email
                     </h3>
-                    <p className="text-muted-foreground">john@example.com</p>
+                    <p className="text-muted-foreground">{CONTACT_DATA.email}</p>
                   </div>
                 </div>
 
@@ -435,57 +420,48 @@ const Home = () => {
                     Follow Me
                   </h3>
                   <div className="flex space-x-4">
-                    <a
-                      href="#"
-                      className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                    >
-                      <Linkedin size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-3 bg-secondary rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                    >
-                      <Mail size={20} />
-                    </a>
+                    {CONTACT_DATA.socialLinks.map((link, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        size="icon"
+                        asChild
+                        className="rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                      >
+                        <a href={link.url}>
+                          {getIcon(link.icon)}
+                        </a>
+                      </Button>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div>
-                  <input
+              <Card className="p-6">
+                <div className="space-y-6">
+                  <Input
                     type="text"
                     placeholder="Your Name"
-                    className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors placeholder:text-muted-foreground"
+                    className="transition-colors"
                   />
-                </div>
-                <div>
-                  <input
+                  <Input
                     type="email"
                     placeholder="Your Email"
-                    className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors placeholder:text-muted-foreground"
+                    className="transition-colors"
                   />
-                </div>
-                <div>
-                  <textarea
+                  <Textarea
                     placeholder="Your Message"
                     rows={5}
-                    className="w-full px-4 py-3 bg-input border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors placeholder:text-muted-foreground resize-none"
-                  ></textarea>
+                    className="transition-colors resize-none"
+                  />
+                  <Button
+                    className="w-full font-semibold shadow-lg"
+                    onClick={handleContactSubmit}
+                  >
+                    Send Message
+                  </Button>
                 </div>
-                <button
-                  className="w-full py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:bg-primary/90 transition-all duration-300 shadow-lg"
-                  onClick={() => alert("Message sent! (This is a demo)")}
-                >
-                  Send Message
-                </button>
-              </div>
+              </Card>
             </div>
           </div>
         </section>
@@ -494,8 +470,7 @@ const Home = () => {
         <footer className="py-8 px-6 border-t border-border">
           <div className="max-w-7xl mx-auto text-center">
             <p className="text-muted-foreground">
-              © 2025 John Doe. All rights reserved. Built with React & Tailwind
-              CSS.
+              {FOOTER_DATA.copyright}
             </p>
           </div>
         </footer>
