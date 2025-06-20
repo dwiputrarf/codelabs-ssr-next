@@ -47,17 +47,6 @@ export const PROJECTS = [
   },
 ];
 
-export const SKILLS = [
-  { name: "JavaScript", level: 95 },
-  { name: "React", level: 90 },
-  { name: "Node.js", level: 85 },
-  { name: "Python", level: 80 },
-  { name: "TypeScript", level: 88 },
-  { name: "MongoDB", level: 82 },
-  { name: "PostgreSQL", level: 78 },
-  { name: "AWS", level: 75 },
-];
-
 export const ABOUT_DATA = {
   title: "About Me",
   subtitle: "I'm a passionate developer with 5+ years of experience creating digital experiences that combine beautiful design with powerful functionality.",
@@ -68,6 +57,16 @@ export const ABOUT_DATA = {
       description: "Led development teams in creating scalable web applications for fortune 500 companies, managing full project lifecycles from conception to deployment."
     },
     {
+      icon: "code",
+      title: "Technical Expertise", 
+      description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
+    },
+        {
+      icon: "code",
+      title: "Technical Expertise", 
+      description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
+    },
+        {
       icon: "code",
       title: "Technical Expertise", 
       description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
@@ -99,6 +98,5 @@ export const ANIMATIONS = {
 
 export type NavigationItem = typeof NAVIGATION_ITEMS[number];
 export type Project = typeof PROJECTS[0];
-export type Skill = typeof SKILLS[0];
 export type AboutSection = typeof ABOUT_DATA.sections[0];
 export type SocialLink = typeof CONTACT_DATA.socialLinks[0];

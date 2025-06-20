@@ -30,22 +30,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   NAVIGATION_ITEMS,
   HERO_DATA,
   PROJECTS,
-  SKILLS,
   ABOUT_DATA,
   CONTACT_DATA,
   FOOTER_DATA,
   ANIMATIONS,
-  type NavigationItem,
   type Project,
-  type Skill,
 } from "@/lib/constants/home";
 
 const Home = () => {
@@ -268,7 +263,7 @@ const Home = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 {ABOUT_DATA.sections.map((section, index) => (
                   <Card
@@ -295,23 +290,6 @@ const Home = () => {
                       </p>
                     </CardContent>
                   </Card>
-                ))}
-              </div>
-
-              <div className="space-y-6">
-                <h3 className="text-2xl font-semibold mb-6 text-foreground">
-                  Skills & Technologies
-                </h3>
-                {SKILLS.map((skill: Skill, index) => (
-                  <div key={skill.name} className="space-y-2">
-                    <div className="flex justify-between">
-                      <span className="font-medium text-foreground">
-                        {skill.name}
-                      </span>
-                      <span className="text-primary">{skill.level}%</span>
-                    </div>
-                    <Progress value={skill.level} className="h-2" />
-                  </div>
                 ))}
               </div>
             </div>
