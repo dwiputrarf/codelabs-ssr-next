@@ -16,6 +16,7 @@ import {
   MessageCircle,
   Sun,
   Moon,
+  Icon,
 } from "lucide-react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -41,6 +42,7 @@ import {
   FOOTER_DATA,
   ANIMATIONS,
   type Project,
+  TECH_STACK,
 } from "@/lib/constants/home";
 
 const Home = () => {
@@ -116,7 +118,7 @@ const Home = () => {
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex justify-between items-center">
               <div className="flex flex-row">
-                <div className="text-2xl font-bold text-white">Port</div>
+                <div className="text-2xl font-bold text-foreground">Port</div>
                 <div className="text-2xl font-bold text-primary">folio</div>
               </div>
 
@@ -264,37 +266,63 @@ const Home = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                {ABOUT_DATA.sections.map((section, index) => (
-                  <Card
-                    key={index}
-                    className="hover:border-primary/50 transition-all duration-300"
-                  >
-                    <CardHeader>
-                      <div className="flex items-center space-x-4">
-                        <div className="p-2 bg-primary/10 rounded-full">
-                          {section.icon === "briefcase" ? (
-                            <Briefcase className="text-primary" size={24} />
-                          ) : (
-                            <Code className="text-primary" size={24} />
-                          )}
-                        </div>
-                        <CardTitle className="text-xl">
-                          {section.title}
-                        </CardTitle>
+              {ABOUT_DATA.sections.map((section, index) => (
+                <Card
+                  key={index}
+                  className="hover:border-primary/50 transition-all duration-300"
+                >
+                  <CardHeader>
+                    <div className="flex items-center space-x-4">
+                      <div className="p-2 bg-primary/10 rounded-full">
+                        {section.icon === "briefcase" ? (
+                          <Briefcase className="text-primary" size={24} />
+                        ) : (
+                          <Code className="text-primary" size={24} />
+                        )}
                       </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">
-                        {section.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                      <CardTitle className="text-xl">{section.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      {section.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
+
+        <div className="pt-20 mb-20 bg-gradient-to-b from-muted/30 to-black">
+          <h2 className="text-4xl font-bold text-center mb-12 text-foreground bg-clip-text">
+            Tech stack
+          </h2>
+
+          <div className="relative overflow-hidden w-full py-12 bg-gradient-to-t from-muted/30 to-black">
+            <div className="flex w-max space-x-12 animate-marquee">
+              {[...TECH_STACK, ...TECH_STACK].map((tech, index) => {
+                const Icon = tech.icon;
+                return (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 flex flex-col items-center group cursor-pointer"
+                  >
+                    <div className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300 filter grayscale group-hover:grayscale-0">
+                      {Icon ? <Icon /> : <span>🚫</span>}
+                    </div>
+                    <Badge
+                      variant="secondary"
+                      className="text-yellow-400 transition-all duration-300"
+                    >
+                      {tech.name}
+                    </Badge>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
         {/* Portfolio Section */}
         <section id="portfolio" className="py-20 px-6">

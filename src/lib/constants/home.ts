@@ -1,4 +1,40 @@
 // constants/home.ts
+// Import these at the top of your file
+import {
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiAngular,
+  SiSvelte,
+  SiNodedotjs,
+  SiPython,
+  SiExpress,
+  SiFastapi,
+  SiDjango,
+  SiSpring,
+  SiGo,
+  SiRust,
+  SiFlutter,
+  SiSwift,
+  SiKotlin,
+  SiExpo,
+  SiPostgresql,
+  SiMongodb,
+  SiRedis,
+  SiMysql,
+  SiSupabase,
+  SiDocker,
+  SiKubernetes,
+  SiVercel,
+  SiFirebase,
+  SiGithubactions,
+  SiGraphql,
+  SiGit,
+  SiWebpack,
+  SiVite
+} from 'react-icons/si';
 
 export const NAVIGATION_ITEMS = ["home", "about", "portfolio", "contact"] as const;
 
@@ -58,17 +94,17 @@ export const ABOUT_DATA = {
     },
     {
       icon: "code",
-      title: "Technical Expertise", 
+      title: "Technical Expertise",
       description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
     },
-        {
+    {
       icon: "code",
-      title: "Technical Expertise", 
+      title: "Technical Expertise",
       description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
     },
-        {
+    {
       icon: "code",
-      title: "Technical Expertise", 
+      title: "Technical Expertise",
       description: "Specialized in modern JavaScript frameworks, cloud architecture, and database design. Always learning and adapting to new technologies."
     }
   ]
@@ -95,6 +131,48 @@ export const ANIMATIONS = {
   hoverScale: 1.05,
   skillAnimationDuration: 1000
 };
+
+export const TECH_STACK = [
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "Vue.js", icon: SiVuedotjs },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Angular", icon: SiAngular },
+  { name: "Svelte", icon: SiSvelte },
+
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "Python", icon: SiPython },
+  { name: "Express.js", icon: SiExpress },
+  { name: "FastAPI", icon: SiFastapi },
+  { name: "Django", icon: SiDjango },
+  { name: "Spring Boot", icon: SiSpring },
+  { name: "Go", icon: SiGo },
+  { name: "Rust", icon: SiRust },
+
+  { name: "React Native", icon: SiReact },
+  { name: "Flutter", icon: SiFlutter },
+  { name: "Swift", icon: SiSwift },
+  { name: "Kotlin", icon: SiKotlin },
+  { name: "Expo", icon: SiExpo },
+
+  { name: "PostgreSQL", icon: SiPostgresql },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "Redis", icon: SiRedis },
+  { name: "MySQL", icon: SiMysql },
+  { name: "Supabase", icon: SiSupabase },
+
+  { name: "Docker", icon: SiDocker },
+  { name: "Kubernetes", icon: SiKubernetes },
+  { name: "Vercel", icon: SiVercel },
+  { name: "Firebase", icon: SiFirebase },
+  { name: "GitHub Actions", icon: SiGithubactions },
+
+  { name: "GraphQL", icon: SiGraphql },
+  { name: "Git", icon: SiGit },
+  { name: "Webpack", icon: SiWebpack },
+  { name: "Vite", icon: SiVite },
+];
 
 export type NavigationItem = typeof NAVIGATION_ITEMS[number];
 export type Project = typeof PROJECTS[0];
