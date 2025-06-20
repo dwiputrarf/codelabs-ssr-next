@@ -44,6 +44,7 @@ import {
   type Project,
   TECH_STACK,
 } from "@/lib/constants/home";
+import Link from "next/link";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -138,6 +139,15 @@ const Home = () => {
                     {item}
                   </Button>
                 ))}
+                <Link href="/login">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="rounded-lg"
+                  >
+                    Login
+                  </Button>
+                </Link>
                 <Button
                   variant="outline"
                   size="icon"

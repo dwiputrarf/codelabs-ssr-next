@@ -122,7 +122,7 @@ export const CONTACT_DATA = {
 };
 
 export const FOOTER_DATA = {
-  copyright: "© 2025 John Doe. All rights reserved. Built with React & Tailwind CSS."
+  copyright: "© 2025 Rizky Febrianto. All rights reserved. Built with React & Tailwind CSS."
 };
 
 export const ANIMATIONS = {

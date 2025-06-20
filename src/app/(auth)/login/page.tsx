@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2, ChevronLeftCircle, User } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -15,8 +15,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const LoginScreen = () => {
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,11 +48,25 @@ const LoginScreen = () => {
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-md">
         <Card className="bg-black/80 backdrop-blur-xl border-yellow-400/20 shadow-2xl shadow-yellow-400/10">
-          <CardHeader className="text-center space-y-4">
-            {/* Logo */}
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full mx-auto flex items-center justify-center shadow-lg shadow-yellow-400/25">
-              <div className="w-8 h-8 bg-black rounded-full"></div>
-            </div>
+        <CardHeader className="flex items-center">
+            <Button
+              variant="ghost"
+              onClick={() => router.back()}
+              className="p-2 text-white transition-all"
+            >
+              <ChevronLeftCircle className="w-6 h-6" />
+            </Button>
+          </CardHeader>
+
+          <CardHeader className="flex flex-col items-center space-y-4 text-center">
+            <Link href="/" className="block">
+              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg shadow-yellow-400/25 flex items-center justify-center">
+                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                  <User className="w-4 h-4 text-yellow-400" />
+                </div>
+              </div>
+            </Link>
+
             <CardTitle className="text-2xl font-bold text-white">
               Welcome Back
             </CardTitle>
@@ -190,12 +208,14 @@ const LoginScreen = () => {
             <div className="w-full text-center">
               <p className="text-gray-400 text-sm">
                 Don&apos;t have an account?{" "}
-                <Button
-                  variant="link"
-                  className="text-yellow-400 hover:text-yellow-300 p-0 h-auto font-medium"
-                >
-                  Sign up
-                </Button>
+                <Link href="/register">
+                  <Button
+                    variant="link"
+                    className="text-yellow-400 hover:text-yellow-300 p-0 h-auto font-medium"
+                  >
+                    Sign up
+                  </Button>
+                </Link>
               </p>
             </div>
           </CardFooter>
