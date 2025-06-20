@@ -294,12 +294,12 @@ const Home = () => {
           </div>
         </section>
 
-        <div className="pt-20 mb-20 bg-gradient-to-b from-muted/30 to-black">
-          <h2 className="text-4xl font-bold text-center mb-12 text-foreground bg-clip-text">
+        <div className="pt-20 mb-20 bg-gradient-to-b from-muted/30 to-background">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-foreground to-yellow-400 bg-clip-text text-transparent">
             Tech stack
           </h2>
 
-          <div className="relative overflow-hidden w-full py-12 bg-gradient-to-t from-muted/30 to-black">
+          <div className="relative overflow-hidden w-full py-12 bg-gradient-to-t from-muted/20 to-background">
             <div className="flex w-max space-x-12 animate-marquee">
               {[...TECH_STACK, ...TECH_STACK].map((tech, index) => {
                 const Icon = tech.icon;
@@ -308,12 +308,12 @@ const Home = () => {
                     key={index}
                     className="flex-shrink-0 flex flex-col items-center group cursor-pointer"
                   >
-                    <div className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300 filter grayscale group-hover:grayscale-0">
+                    <div className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300 filter grayscale group-hover:grayscale-0 text-foreground">
                       {Icon ? <Icon /> : <span>🚫</span>}
                     </div>
                     <Badge
                       variant="secondary"
-                      className="text-yellow-400 transition-all duration-300"
+                      className="border-yellow-400/30 text-yellow-600 dark:text-yellow-400 group-hover:border-yellow-400 group-hover:bg-yellow-400/10 transition-all duration-300"
                     >
                       {tech.name}
                     </Badge>
