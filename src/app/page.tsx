@@ -295,8 +295,8 @@ const Home = () => {
         </section>
 
         <div className="pt-20 mb-20 bg-gradient-to-b from-muted/30 to-background">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-foreground to-yellow-400 bg-clip-text text-transparent">
-            Tech stack
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground text-center">
+            Tech Stack
           </h2>
 
           <div className="relative overflow-hidden w-full py-12 bg-gradient-to-t from-muted/20 to-background">
@@ -313,7 +313,7 @@ const Home = () => {
                     </div>
                     <Badge
                       variant="secondary"
-                      className="border-yellow-400/30 text-yellow-600 dark:text-yellow-400 group-hover:border-yellow-400 group-hover:bg-yellow-400/10 transition-all duration-300"
+                      className="transition-all duration-300 border-border text-foreground dark:text-yellow-400 group-hover:border-yellow-400 group-hover:bg-yellow-400/10"
                     >
                       {tech.name}
                     </Badge>
