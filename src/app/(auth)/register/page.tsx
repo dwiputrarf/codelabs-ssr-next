@@ -84,24 +84,23 @@ const RegisterScreen = () => {
     acceptTerms;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full opacity-20">
-          <div className="w-96 h-96 bg-yellow-400/20 rounded-full blur-3xl animate-pulse absolute top-1/3 left-1/3"></div>
-          <div className="w-80 h-80 bg-yellow-400/15 rounded-full blur-2xl animate-pulse delay-1000 absolute bottom-1/3 right-1/3"></div>
-          <div className="w-64 h-64 bg-yellow-400/10 rounded-full blur-xl animate-pulse delay-2000 absolute top-1/2 right-1/4"></div>
+          <div className="w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse absolute top-1/4 right-1/4"></div>
+          <div className="w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-pulse delay-1000 absolute bottom-1/4 left-1/4"></div>
         </div>
       </div>
 
       {/* Register Card */}
       <div className="relative z-10 w-full max-w-md">
-        <Card className="bg-black/80 backdrop-blur-xl border-yellow-400/20 shadow-2xl shadow-yellow-400/10">
+        <Card className="bg-background/80 backdrop-blur-xl border-border shadow-2xl shadow-yellow-400/10">
           <CardHeader className="flex items-center ml-6">
             <Button
               variant="ghost"
               onClick={() => router.back()}
-              className="p-2 text-white transition-all"
+              className="p-2 text-foreground transition-all"
             >
               <ChevronLeftCircle className="w-6 h-6" />
             </Button>
@@ -110,16 +109,16 @@ const RegisterScreen = () => {
           <CardHeader className="flex flex-col items-center space-y-4 text-center">
             <Link href="/" className="block">
               <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg shadow-yellow-400/25 flex items-center justify-center">
-                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-background rounded-full flex items-center justify-center">
                   <User className="w-4 h-4 text-yellow-400" />
                 </div>
               </div>
             </Link>
 
-            <CardTitle className="text-2xl font-bold text-white">
+            <CardTitle className="text-2xl font-bold text-foreground">
               Create Account
             </CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardDescription className="text-muted-foreground">
               Join us today and get started
             </CardDescription>
           </CardHeader>
@@ -130,7 +129,7 @@ const RegisterScreen = () => {
               <div className="space-y-2">
                 <Label
                   htmlFor="firstName"
-                  className="text-sm font-medium text-gray-300"
+                  className="text-sm font-medium text-muted-foreground"
                 >
                   First Name
                 </Label>
@@ -141,7 +140,7 @@ const RegisterScreen = () => {
                   onChange={(e) =>
                     handleInputChange("firstName", e.target.value)
                   }
-                  className="bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-yellow-400/50 focus:ring-yellow-400/20"
                   placeholder="John"
                   required
                 />
@@ -149,7 +148,7 @@ const RegisterScreen = () => {
               <div className="space-y-2">
                 <Label
                   htmlFor="lastName"
-                  className="text-sm font-medium text-gray-300"
+                  className="text-sm font-medium text-muted-foreground"
                 >
                   Last Name
                 </Label>
@@ -160,7 +159,7 @@ const RegisterScreen = () => {
                   onChange={(e) =>
                     handleInputChange("lastName", e.target.value)
                   }
-                  className="bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-yellow-400/50 focus:ring-yellow-400/20"
                   placeholder="Doe"
                   required
                 />
@@ -171,18 +170,18 @@ const RegisterScreen = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-300"
+                className="text-sm font-medium text-muted-foreground"
               >
                 Email
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="pl-10 bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="pl-10 bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-yellow-400/50 focus:ring-yellow-400/20"
                   placeholder="john@example.com"
                   required
                 />
@@ -193,12 +192,12 @@ const RegisterScreen = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="password"
-                className="text-sm font-medium text-gray-300"
+                className="text-sm font-medium text-muted-foreground"
               >
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
@@ -206,7 +205,7 @@ const RegisterScreen = () => {
                   onChange={(e) =>
                     handleInputChange("password", e.target.value)
                   }
-                  className="pl-10 pr-10 bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="pl-10 pr-10 bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-yellow-400/50 focus:ring-yellow-400/20"
                   placeholder="Create a strong password"
                   required
                 />
@@ -215,7 +214,7 @@ const RegisterScreen = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400 hover:text-yellow-400"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-yellow-400"
                 >
                   {showPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -239,12 +238,12 @@ const RegisterScreen = () => {
                               : passwordStrength <= 3
                               ? "bg-yellow-500"
                               : "bg-green-500"
-                            : "bg-gray-700"
+                            : "bg-muted-foreground"
                         }`}
                       />
                     ))}
                   </div>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-muted-foreground">
                     {passwordStrength <= 2 && "Weak password"}
                     {passwordStrength === 3 && "Medium password"}
                     {passwordStrength >= 4 && "Strong password"}
@@ -257,12 +256,12 @@ const RegisterScreen = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="confirmPassword"
-                className="text-sm font-medium text-gray-300"
+                className="text-sm font-medium text-muted-foreground"
               >
                 Confirm Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
@@ -270,7 +269,7 @@ const RegisterScreen = () => {
                   onChange={(e) =>
                     handleInputChange("confirmPassword", e.target.value)
                   }
-                  className={`pl-10 pr-10 bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20 ${
+                  className={`pl-10 pr-10 bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-yellow-400/50 focus:ring-yellow-400/20 ${
                     formData.confirmPassword && !passwordsMatch
                       ? "border-red-500/50"
                       : ""
@@ -283,7 +282,7 @@ const RegisterScreen = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400 hover:text-yellow-400"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-yellow-400"
                 >
                   {showConfirmPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -311,11 +310,11 @@ const RegisterScreen = () => {
                   onCheckedChange={(checked) =>
                     setAcceptTerms(checked === true)
                   }
-                  className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400 mt-0.5"
+                  className="border-border data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400 mt-0.5"
                 />
                 <Label
                   htmlFor="terms"
-                  className="text-sm text-gray-400 cursor-pointer leading-5"
+                  className="text-sm text-muted-foreground cursor-pointer leading-5"
                 >
                   I agree to the{" "}
                   <Button
@@ -341,11 +340,11 @@ const RegisterScreen = () => {
                   onCheckedChange={(checked) =>
                     setAcceptMarketing(checked === true)
                   }
-                  className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400 mt-0.5"
+                  className="border-border data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400 mt-0.5"
                 />
                 <Label
                   htmlFor="marketing"
-                  className="text-sm text-gray-400 cursor-pointer leading-5"
+                  className="text-sm text-muted-foreground cursor-pointer leading-5"
                 >
                   Send me updates about new features and promotions
                 </Label>
@@ -356,7 +355,7 @@ const RegisterScreen = () => {
             <Button
               onClick={handleSubmit}
               disabled={isLoading || !isFormValid}
-              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none shadow-lg shadow-yellow-400/25 disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-foreground font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none shadow-lg shadow-yellow-400/25 disabled:opacity-50"
             >
               {isLoading ? (
                 <>
@@ -374,10 +373,10 @@ const RegisterScreen = () => {
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-700" />
+                <span className="w-full border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-black/80 px-2 text-gray-400">
+                <span className="bg-background/80 px-2 text-muted-foreground">
                   Or sign up with
                 </span>
               </div>
@@ -386,14 +385,13 @@ const RegisterScreen = () => {
             {/* Social Login */}
             <Button
               variant="outline"
-              className="w-full bg-gray-900/50 border-gray-700/50 text-white hover:bg-gray-800/50 hover:text-white flex items-center justify-center space-x-2"
+              className="w-full bg-muted/50 border-border text-foreground hover:bg-muted hover:text-foreground flex items-center justify-center space-x-2"
             >
               <Image
                 src="/icons/google.svg"
                 alt="Google"
                 width={20}
                 height={20}
-                className="invert"
               />
               <span>Continue with Google</span>
             </Button>
@@ -401,7 +399,7 @@ const RegisterScreen = () => {
 
           <CardFooter>
             <div className="w-full text-center">
-              <p className="text-gray-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 Already have an account?{" "}
                 <Link href="/login">
                   <Button
@@ -417,7 +415,7 @@ const RegisterScreen = () => {
         </Card>
 
         {/* Footer */}
-        <div className="mt-6 text-center text-gray-500 text-sm">
+        <div className="mt-6 text-center text-muted-foreground text-sm">
           <p>&copy; 2024 Your Company. All rights reserved.</p>
         </div>
       </div>

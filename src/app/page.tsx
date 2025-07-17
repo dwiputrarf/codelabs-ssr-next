@@ -110,15 +110,22 @@ const Home = () => {
       <div className="min-h-screen bg-background text-foreground">
         {/* Navigation */}
         <nav
-          className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-            isScrolled
+          className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
               ? "bg-background/80 backdrop-blur-md border-b border-border"
               : "bg-transparent"
-          }`}
+            }`}
         >
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex justify-between items-center">
-              <div className="flex flex-row">
+              <div className="flex flex-row items-center">
+                <Image
+                  alt="Portfolio Logo"
+                  className="h-10 w-auto mr-2"
+                  height={40}
+                  src="/images/portfolio.png"
+                  width={40}
+                  priority
+                />
                 <div className="text-2xl font-bold text-foreground">Port</div>
                 <div className="text-2xl font-bold text-primary">folio</div>
               </div>
@@ -130,11 +137,10 @@ const Home = () => {
                     key={item}
                     variant="ghost"
                     onClick={() => scrollToSection(item)}
-                    className={`capitalize transition-all duration-300 ${
-                      activeSection === item
+                    className={`capitalize transition-all duration-300 ${activeSection === item
                         ? "text-primary font-medium"
                         : "text-muted-foreground hover:text-primary"
-                    }`}
+                      }`}
                   >
                     {item}
                   </Button>

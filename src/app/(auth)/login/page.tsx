@@ -32,27 +32,27 @@ const LoginScreen = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      console.log("Login attempted with:", { email, password, rememberMe });
+      router.push('/dashboard');
     }, 2000);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -left-1/2 w-full h-full opacity-20">
-          <div className="w-96 h-96 bg-yellow-400/20 rounded-full blur-3xl animate-pulse absolute top-1/4 right-1/4"></div>
-          <div className="w-64 h-64 bg-yellow-400/10 rounded-full blur-2xl animate-pulse delay-1000 absolute bottom-1/4 left-1/4"></div>
+          <div className="w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse absolute top-1/4 right-1/4"></div>
+          <div className="w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-pulse delay-1000 absolute bottom-1/4 left-1/4"></div>
         </div>
       </div>
 
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-md">
-        <Card className="bg-black/80 backdrop-blur-xl border-yellow-400/20 shadow-2xl shadow-yellow-400/10">
+        <Card className="bg-card/80 backdrop-blur-xl border-border shadow-2xl shadow-primary/10">
         <CardHeader className="flex items-center">
             <Button
               variant="ghost"
               onClick={() => router.back()}
-              className="p-2 text-white transition-all"
+              className="p-2 text-foreground transition-all"
             >
               <ChevronLeftCircle className="w-6 h-6" />
             </Button>
@@ -60,17 +60,17 @@ const LoginScreen = () => {
 
           <CardHeader className="flex flex-col items-center space-y-4 text-center">
             <Link href="/" className="block">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full shadow-lg shadow-yellow-400/25 flex items-center justify-center">
-                <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                  <User className="w-4 h-4 text-yellow-400" />
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full shadow-lg shadow-primary/25 flex items-center justify-center">
+                <div className="w-8 h-8 bg-background rounded-full flex items-center justify-center">
+                  <User className="w-4 h-4 text-primary" />
                 </div>
               </div>
             </Link>
 
-            <CardTitle className="text-2xl font-bold text-white">
+            <CardTitle className="text-2xl font-bold text-foreground">
               Welcome Back
             </CardTitle>
-            <CardDescription className="text-gray-400">
+            <CardDescription className="text-muted-foreground">
               Sign in to your account to continue
             </CardDescription>
           </CardHeader>
@@ -80,18 +80,18 @@ const LoginScreen = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-300"
+                className="text-sm font-medium text-muted-foreground"
               >
                 Email
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="pl-10 bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-primary/50 focus:ring-primary/20"
                   placeholder="Enter your email"
                   required
                 />
@@ -102,18 +102,18 @@ const LoginScreen = () => {
             <div className="space-y-2">
               <Label
                 htmlFor="password"
-                className="text-sm font-medium text-gray-300"
+                className="text-sm font-medium text-muted-foreground"
               >
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-10 bg-gray-900/50 border-gray-700/50 text-white placeholder-gray-400 focus:border-yellow-400/50 focus:ring-yellow-400/20"
+                  className="pl-10 pr-10 bg-muted/50 border-border text-foreground placeholder-muted-foreground focus:border-primary/50 focus:ring-primary/20"
                   placeholder="Enter your password"
                   required
                 />
@@ -122,7 +122,7 @@ const LoginScreen = () => {
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-gray-400 hover:text-yellow-400"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent text-muted-foreground hover:text-primary"
                 >
                   {showPassword ? (
                     <EyeOff className="w-4 h-4" />
@@ -140,18 +140,18 @@ const LoginScreen = () => {
                   id="remember"
                   checked={rememberMe}
                   onCheckedChange={(checked) => setRememberMe(checked === true)}
-                  className="border-gray-600 data-[state=checked]:bg-yellow-400 data-[state=checked]:border-yellow-400"
+                  className="border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                 />
                 <Label
                   htmlFor="remember"
-                  className="text-sm text-gray-400 cursor-pointer"
+                  className="text-sm text-muted-foreground cursor-pointer"
                 >
                   Remember me
                 </Label>
               </div>
               <Button
                 variant="link"
-                className="text-sm text-yellow-400 hover:text-yellow-300 p-0 h-auto"
+                className="text-sm text-primary hover:text-primary/80 p-0 h-auto"
               >
                 Forgot password?
               </Button>
@@ -161,7 +161,7 @@ const LoginScreen = () => {
             <Button
               onClick={handleSubmit}
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-black font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none shadow-lg shadow-yellow-400/25"
+              className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/80 hover:to-primary text-background font-semibold transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98] disabled:transform-none shadow-lg shadow-primary/25"
             >
               {isLoading ? (
                 <>
@@ -179,10 +179,10 @@ const LoginScreen = () => {
             {/* Divider */}
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-gray-700" />
+                <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-black/80 px-2 text-gray-400">
+                <span className="bg-card/80 px-2 text-muted-foreground">
                   Or continue with
                 </span>
               </div>
@@ -191,14 +191,13 @@ const LoginScreen = () => {
             {/* Social Login */}
             <Button
               variant="outline"
-              className="w-full bg-gray-900/50 border-gray-700/50 text-white hover:bg-gray-800/50 hover:text-white flex items-center justify-center space-x-2"
+              className="w-full bg-muted/50 border-border text-foreground hover:bg-muted hover:text-foreground flex items-center justify-center space-x-2"
             >
               <Image
                 src="/icons/google.svg"
                 alt="Google"
                 width={20}
                 height={20}
-                className="invert"
               />
               <span>Continue with Google</span>
             </Button>
@@ -206,12 +205,12 @@ const LoginScreen = () => {
 
           <CardFooter>
             <div className="w-full text-center">
-              <p className="text-gray-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 Don&apos;t have an account?{" "}
                 <Link href="/register">
                   <Button
                     variant="link"
-                    className="text-yellow-400 hover:text-yellow-300 p-0 h-auto font-medium"
+                    className="text-primary hover:text-primary/80 p-0 h-auto font-medium"
                   >
                     Sign up
                   </Button>
@@ -222,7 +221,7 @@ const LoginScreen = () => {
         </Card>
 
         {/* Footer */}
-        <div className="mt-6 text-center text-gray-500 text-sm">
+        <div className="mt-6 text-center text-muted-foreground text-sm">
           <p>&copy; 2024 Your Company. All rights reserved.</p>
         </div>
       </div>
