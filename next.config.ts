@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     ],
   },
   output: 'export',
+
+  basePath: '/codelabs-ssr-next',
+  assetPrefix: '/codelabs-ssr-next/',
 };
 
 export default nextConfig;
