@@ -122,7 +122,7 @@ const Home = () => {
                   alt="Portfolio Logo"
                   className="h-10 w-auto mr-2"
                   height={40}
-                  src="/images/portfolio.png"
+                  src="/codelabs-ssr-next/images/portfolio.png"
                   width={40}
                   priority
                 />
@@ -209,7 +209,7 @@ const Home = () => {
             <div className="mb-8">
               <Avatar className="w-32 h-32 mx-auto mb-6">
                 <Image
-                  src="/images/avatar.jpg"
+                  src="/codelabs-ssr-next/images/avatar.jpg"
                   alt={HERO_DATA.profileImage.alt}
                   fill
                   className="object-cover rounded-full"

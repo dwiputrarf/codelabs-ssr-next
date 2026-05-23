@@ -81,7 +81,7 @@ function AppBar() {
           alt="Portfolio Logo"
           className="h-10 w-auto"
           height={40}
-          src="/images/portfolio.png"
+          src="/codelabs-ssr-next/images/portfolio.png"
           width={40}
           priority
         />

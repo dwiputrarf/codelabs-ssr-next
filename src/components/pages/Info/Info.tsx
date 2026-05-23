@@ -92,21 +92,21 @@ const DEFAULT_CARDS: DashboardCard[] = [
     value: 0,
     percentage: 0,
     isPositive: true,
-    image: '/images/igfx_person.png',
+    image: '/codelabs-ssr-next/images/igfx_person.png',
   },
   {
     title: 'Total Products',
     value: 0,
     percentage: 0,
     isPositive: true,
-    image: '/images/igfx_cube.png',
+    image: '/codelabs-ssr-next/images/igfx_cube.png',
   },
   {
     title: 'Total Sales',
     value: 0,
     percentage: 0,
     isPositive: true,
-    image: '/images/igfx_chart.png',
+    image: '/codelabs-ssr-next/images/igfx_chart.png',
   }
 ];
 
@@ -141,21 +141,21 @@ const transformApiResponse = (apiResponse: ApiResponse): DashboardData => {
       value: users.thisMonth,
       percentage: calculatePercentageChange(users.thisMonth, users.lastMonth),
       isPositive: users.thisMonth >= users.lastMonth,
-      image: '/images/igfx_person.png',
+      image: '/codelabs-ssr-next/images/igfx_person.png',
     },
     {
       title: 'Total Products',
       value: products.thisMonth,
       percentage: calculatePercentageChange(products.thisMonth, products.lastMonth),
       isPositive: products.thisMonth >= products.lastMonth,
-      image: '/images/igfx_cube.png',
+      image: '/codelabs-ssr-next/images/igfx_cube.png',
     },
     {
       title: 'Total Sales',
       value: sales.thisMonth,
       percentage: calculatePercentageChange(sales.thisMonth, sales.lastMonth),
       isPositive: sales.thisMonth >= sales.lastMonth,
-      image: '/images/igfx_chart.png',
+      image: '/codelabs-ssr-next/images/igfx_chart.png',
     }
   ];
 
